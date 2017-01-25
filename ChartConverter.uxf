@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>20</y>
+      <w>240</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::Main
+
+--
+Responsibilities
+-- Show web-page and provide UI
+for upload and map symbol.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>20</y>
+      <w>370</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::FileDownloader
+--
+-File
+--
++GetFile()
+--
+Responsibilities
+-- Download file object from user and store it in TMP DIR.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>190</y>
+      <w>580</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::Format
+--
+
+
+Responsibilities
+--Format Chart accordint to given format.
+We need this class formating input and output.
+For example if FXCM change format of their charts we should 
+be ready to easy reconfigure.
+Also if we found another data provider - converter class should
+be ready to format all data according to format.
+Format = Field order.
+e.g. 
+Data,Time,Quote,Ask,Bid,Volume
+Our conveter class should be able to  convert from RawCharts to file accordign to Format.
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>290</y>
+      <w>340</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::DailyChart
+--
+-ArrayList&lt;String[]&gt; Charts
+--
++String getSymbol()
++Charts getCharts()
+--
+Responsibilities
+-- Holds  Daily  charts DATA
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>10</y>
+      <w>390</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::FileParser
+--
+-ArrayList&lt;String&gt; File
+-ArrayList&lt;ParsedLine&gt; 
+--
++ Chart Parse()
+--
+Responsibilities
+-- Parse File and valid data in it.
+-- Produce Charts from File
+-- Detect Chart TYPE ?</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>770</x>
+      <y>480</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::CharUploader
+--
++ void Upload(File file)
+--
+Responsibilities
+-- 
+Upload to  end user files</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>480</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::ChartWriter
+--
+-ArrayList&lt;Chart&gt; chart
+--
++? Convert(Format format)
+--
+Responsibilities
+-- Write chart to data to the CSV file(s)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>180</y>
+      <w>340</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/ChartConverter::Chart/
+--
+abstract String getSymbol()
+--
+Responsibilities
+-- Abstract Class for the Chart Representation.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>450</y>
+      <w>340</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>ChartConverter::MinuteChart
+--
+-ArrayList&lt;String[]&gt; Charts
+--
++Charts getCharts()
++String getSymbol()
+--
+Responsibilities
+-- Holds  Minute  charts DATA
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

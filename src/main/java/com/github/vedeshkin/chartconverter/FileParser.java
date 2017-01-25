@@ -12,7 +12,19 @@ public class FileParser {
         this.input = input;
     }
 
+
+
     public Chart parse(){
+    //implement main parse logic here
+
+
         return null;
+    }
+
+    public static void main(String[] args) {
+
+        FileParser fp =  new FileParser(new File("C:\\Charts.txt"));
+        Chart ch =  fp.parse();
+
     }
 }

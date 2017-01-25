@@ -5,10 +5,10 @@ import java.io.File;
 /**
  * Created by vedeshkin on 25.01.2017.
  */
-public class FilerParser {
+public class FileParser {
 
     private File input;
-    public FilerParser(File input) {
+    public FileParser(File input) {
         this.input = input;
     }
 

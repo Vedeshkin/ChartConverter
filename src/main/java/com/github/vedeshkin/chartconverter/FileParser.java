@@ -1,16 +1,20 @@
 package com.github.vedeshkin.chartconverter;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
+
+import com.opencsv.CSVIterator;
+import com.opencsv.CSVParser;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+
+import static com.github.vedeshkin.chartconverter.InputFormat.*;
 
 /**
  * Created by vedeshkin on 25.01.2017.
@@ -25,25 +29,48 @@ public class FileParser {
 
 
 
-    public Chart parse(){
-    //implement main parse logic here
+    public void parse() {
 
-        List records = new ArrayList();
+
+        FileReader fileReader;
+        ArrayList<String[]> parsedLines;
+
         try {
-            records = CSVParser.parse(new File(file), Charset.defaultCharset() ,CSVFormat.EXCEL).getRecords();
+            fileReader = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            logger.error(e);
+            return;
         }
-        catch (IOException ex)
+        CSVReader csvReader = new CSVReaderBuilder(fileReader).
+                withSkipLines(1).
+                build();
+
+        try {
+            parsedLines = (ArrayList) csvReader.readAll();
+        } catch (IOException e) {
+           logger.error(e);
+           return;
+        }
+        for (String[] line:parsedLines)
         {
-            logger.error("Error during file open",ex);
+            if(line.length !=  7){
+                logger.info("Wrong format");
+            }
+        }
+        try {
+            csvReader.close();
+            fileReader.close();
+        } catch (IOException e) {
+            logger.error(e);
         }
 
-        return new Chart(ChartType.DAILY,(ArrayList)records);
     }
 
     public static void main(String[] args) {
         logger.info("Log4j is here");
-        FileParser fp =  new FileParser("C:\\Charts.txt");
-        Chart ch =  fp.parse();
+        FileParser fp =  new FileParser("C:\\Data.csv");
+        fp.parse();
 
     }
+
 }

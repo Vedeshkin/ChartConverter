@@ -1,17 +1,31 @@
 package com.github.vedeshkin.chartconverter;
 
-import java.util.ArrayList;
-import org.apache.commons.csv.CSVRecord;
+import java.io.File;
+import java.util.TimeZone;
 
 /**
  * Created by vedeshkin on 25.01.2017.
  */
 public class Chart {
     private ChartType type;
-    private ArrayList<CSVRecord> charts;
+    private File file;
+    private TimeZone timeZone;
 
-    public Chart(ChartType type,ArrayList<CSVRecord> charts) {
+    public Chart(ChartType type, File file, TimeZone timeZone) {
         this.type = type;
-        this.charts = charts;
+        this.file = file;
+        this.timeZone = timeZone;
+    }
+
+    public ChartType getType() {
+        return type;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public TimeZone getTimeZone() {
+        return timeZone;
     }
 }
